@@ -10,7 +10,6 @@ box.forEach((innerStuff)=>{innerStuff.innerText ="" })
 
 
 let positionsOfXAndO = {
-  
         0: "",
         1:"",
         2:"",
@@ -20,25 +19,40 @@ let positionsOfXAndO = {
         6: "",
         7:"",
         8:""
+}
 
-     
+
+let box;
+let squareDivs = document.getElementsByClassName("box")
+function changePcClassList(){
+        for(let i = 0 ; i < 9 ; i++){
+            squareDivs[i].classList.add("boxPc")
+            squareDivs[i].classList.remove("boxUser")
+
+        }
+    box = document.querySelectorAll(".boxPc");
+    PushingXToObject()
+
+}
+function changeOtherUserClassList(){
+    for(let i = 0 ; i < 9 ; i++){
+        squareDivs[i].classList.add("boxUser")
+        squareDivs[i].classList.remove("boxPc")
+    }
+    box = document.querySelectorAll(".boxUser");
+
+    PushingXToObject()
 
 }
 
 
-let winningPositions = [
 
-]
-
-
-
-
-
-
+let counterTurn = 0;
 function PushingXToObject(){
-    let box = document.querySelectorAll(".box");
     box.forEach((boxy)=>{ boxy.addEventListener("click", 
     ()=> {
+        counterTurn +=1
+        console.log(counterTurn)
         let IndexPressed = "";
         const parent = document.getElementById('test');
         let child= parent.children
@@ -46,23 +60,29 @@ function PushingXToObject(){
         if(positionsOfXAndO[IndexPressed.toString()] === "X" || positionsOfXAndO[IndexPressed.toString()] ==="O")
         {}
         else{positionsOfXAndO[IndexPressed.toString()] ="X"
-        pushingOtoObject()
-        displayXandOs()
-        checkWin()
-
-
+        if(box[0].className==="box boxPc"){
+            pushingOtoObjectPc()
+            displayXandOs()
+            checkWin()
+    
+        }else{ 
+          if(counterTurn % 2 === 0 ){
+            positionsOfXAndO[IndexPressed.toString()] = "O" 
+          }
+            displayXandOs()
+            checkWin()
+        }
+   
     }
 
      });})
-
 }
-PushingXToObject()
 
 
-function pushingOtoObject(){
+function pushingOtoObjectPc(){
   
   let arrayValues = Object.values(positionsOfXAndO)
-  //console.log(arrayValues)
+
   if(arrayValues.includes("")){
     function RandomNum(){
         let randomNum = Math.floor(Math.random() * 9);
@@ -89,12 +109,7 @@ function displayXandOs(){
         }
 
 }
-
-
 }
-
-
-
 displayXandOs()
 
 
@@ -135,9 +150,10 @@ let diagonalArray2= [rowArray[0][2],rowArray[1][1],rowArray[2][0]]
 
 };
 
+
 function diagonals(value){
-    console.log(value)
     if(value.includes("")===false && value.includes("O")=== false){
+
         return alert("win")
  }else if(value.includes("")===false && value.includes("X")===false){
      return alert("you lose")
@@ -145,11 +161,13 @@ function diagonals(value){
 
 }
 
+
 function evaluateWin(value){
-    console.log(value)
     for (let i = 0; i  <3; i++) {
         if(value[i].includes("")===false && value[i].includes("O")===false){
-           return alert("win")
+     
+          alert("win")
+         
     }else if(value[i].includes("")===false && value[i].includes("X")===false){
         return alert("you lose")
     }
