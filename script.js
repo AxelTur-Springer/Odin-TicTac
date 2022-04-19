@@ -29,28 +29,28 @@ const gameBoard = (()=>{
     let pressedPc = false
     function changePcClassList(){
         resetObjectjeje()
-     /* let alertIngPlayer = document.createElement("div")
+      let alertIngPlayer = document.createElement("div")
       let alertText = document.createElement("p")
         alertText.innerText = "Your are playing against The Pc Bip Boop Bip"
         alertIngPlayer.appendChild(alertText)
         alertIngPlayer.style.marginTop ="5em"
         alertIngPlayer.style.fontSize ="2em"
         pcOrUserDiv.appendChild(alertIngPlayer)
-*/    
+
 
        
         
-        if(pressedPc === false){
+       
             for(let i = 0 ; i < 9 ; i++){
                 squareDivs[i].classList.add("boxPc")
                 squareDivs[i].classList.remove("boxUser")
     
             }
             box = document.querySelectorAll(".boxPc");
-                PushingXToObject()
                 pressedPc = true;
+                box.forEach((boxy)=>{ boxy.addEventListener("click",eventclick)})
 
-        }
+        
        
     
     }
@@ -59,41 +59,42 @@ const gameBoard = (()=>{
     function changeOtherUserClassList(){
         resetObjectjeje()
 
-        /*let alertIngPlayer = document.createElement("div")
+        let alertIngPlayer = document.createElement("div")
         let alertText = document.createElement("p")
           alertText.innerText = "Your are playing against your friend"
           alertIngPlayer.appendChild(alertText)
           alertIngPlayer.style.marginTop ="5em"
           alertIngPlayer.style.fontSize ="2em"
-          pcOrUserDiv.appendChild(alertIngPlayer)*/
+          pcOrUserDiv.appendChild(alertIngPlayer)
         
-        if(pressedUser === false){
+  
             for(let i = 0 ; i < 9 ; i++){
                 squareDivs[i].classList.add("boxUser")
                 squareDivs[i].classList.remove("boxPc")
             }
                 box = document.querySelectorAll(".boxUser");
-                PushingXToObject()
                 pressedUser = true;
             
-        }
+        
     
     }
     
+
+
+
     function eventclick(){
-        
+            let divPressed = this//.innerText;
+         PushingXToObject(this)
     }
 
     
     let counterTurn = 1;
-    function PushingXToObject(){
-        box.forEach((boxy)=>{ boxy.addEventListener("click", 
-        ()=> {
+    function PushingXToObject(divTouched){
             let IndexPressed = ""
             console.log("puxhingxtoobject");
             const parent = document.getElementById('test');
             let child= parent.children
-            IndexPressed = [...child].indexOf(boxy)
+            IndexPressed = [...child].indexOf(divTouched)
             if(positionsOfXAndO[IndexPressed.toString()] === "X" || positionsOfXAndO[IndexPressed.toString()] ==="O")
             {            
             }
@@ -104,7 +105,7 @@ const gameBoard = (()=>{
                 displayXandOs()
                
 
-        
+    
             }else{  // this is the case if your playing against a friend
               if(counterTurn === 0){
                 counterTurn = 1
@@ -121,12 +122,11 @@ const gameBoard = (()=>{
        
         }
     
-         });})
+     
     }
     
     
     function pushingOtoObjectPc(){
-
 
       let arrayValues = Object.values(positionsOfXAndO)
     
