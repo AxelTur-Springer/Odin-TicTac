@@ -16,22 +16,27 @@ const gameBoard = (()=>{
             7:"",
             8:""
     }
-
+    const tableTic = document.getElementById("ticTacToeTable")
     let box;
     let squareDivs = document.getElementsByClassName("box")
     let pcOrUserDiv = document.getElementById("fullContainer")
+    const CounterOtherChoice = document.getElementById("nameOther")
     
     function changePcClassList(){
+     
     resetObjectjeje()
-      
+    resetCounters()
+    CounterOtherChoice.innerText = "The Pc"
+    tableTic.style.display="flex";
       let alertIngPlayer = document.createElement("div")
       let alertText = document.createElement("p")
         alertText.innerText = "Your are playing against The Pc Bip Boop Bip"
+        alertIngPlayer.className= "test";
         alertIngPlayer.appendChild(alertText)
         alertIngPlayer.style.marginTop ="2em"
         alertIngPlayer.style.fontSize ="2em"
         pcOrUserDiv.appendChild(alertIngPlayer)
-
+       
             for(let i = 0 ; i < 9 ; i++){
                 squareDivs[i].classList.add("boxPc")
                 squareDivs[i].classList.remove("boxUser")
@@ -47,9 +52,12 @@ const gameBoard = (()=>{
 
     function changeOtherUserClassList(){
         resetObjectjeje()
-
+        resetCounters()
+        CounterOtherChoice.innerText = "Player O"
+        tableTic.style.display="flex";
         let alertIngPlayer = document.createElement("div")
         let alertText = document.createElement("p")
+          alertIngPlayer.className= "test";
           alertText.innerText = "Your are playing against your friend"
           alertIngPlayer.appendChild(alertText)
           alertIngPlayer.style.marginTop ="2em"
@@ -169,13 +177,15 @@ const gameBoard = (()=>{
     
     function diagonals(value){
         if(value.includes("")===false && value.includes("O")=== false){
-                resetObjectjeje()
-                return alert("win")
+            resetObjectjeje()
+            counter("win")
+            return alert("win")
 
    
           
      }else if(value.includes("")===false && value.includes("X")===false){
                 resetObjectjeje()
+                counter("lose")
                 return alert("you lose")
 
         }
@@ -186,20 +196,48 @@ const gameBoard = (()=>{
         for (let i = 0; i  <3; i++) {
             if(value[i].includes("")===false && value[i].includes("O")===false){
                  resetObjectjeje()
+                 counter("win")
                  return alert("win")
 
             }else if(value[i].includes("")===false && value[i].includes("X")===false){
              resetObjectjeje()
+             counter("lose")
              return alert("you lose")
             }
         }
     }
-    
-    
-    function displayWinOrLose(winOrLose){
 
+    //html Elements
+const counterYouDiv = document.getElementById("CounterYou");
+const counterOtherDiv = document.getElementById("CounterOther");
+let counterYouNum = 0;
+let counterOtherNum = 0;
+function counter(winOrLose){
+    if(winOrLose === "win"){
+        counterYouNum +=1
+        counterYouDiv.innerText = counterYouNum;
+    }else{
+        counterOtherNum +=1
+        counterOtherDiv.innerText = counterOtherNum;
     }
+}
+function resetCounters(){
+   counterYouNum = 0;
+   counterYouDiv.innerText = counterYouNum;
+   counterOtherNum =0;
+   counterOtherDiv.innerText = counterYouNum;
+}
+
+
+function displayWinOrLose(winOrLose){
+
+}
+
     function resetObjectjeje(){
+        document.querySelectorAll('.test').forEach(function(a){
+            a.remove()
+            })
+       counterTurn = 1;
         positionsOfXAndO = {
             0:"",
             1:"",
@@ -216,9 +254,3 @@ const gameBoard = (()=>{
 
 
 
-function counterYouNum(){
-
-}
-//html Elements
-let counterYouDiv = document.getElementById("CounterYou");
-let counterOtherDiv = document.getElementById("CounterOther");
