@@ -56,7 +56,7 @@ button:hover{
     margin-top: 1em;
     display: none;
     justify-content: center;
-
+    
 }
 
 
@@ -82,10 +82,14 @@ button:hover{
   color: rgb(0, 0, 0);
   border: 6px solid #000000;
   border-radius: 5px;
+  animation: example 2s forwards;
   /*display: none;	
 */
 }
-
+@keyframes example {
+    from {height: 50px;}
+    to {height: 300px;}
+  }
 .box
 {
   border: 6px solid #000000;
