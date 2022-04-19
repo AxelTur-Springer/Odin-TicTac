@@ -3,35 +3,48 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
+body{
 
+}
+button:hover{
+    cursor: pointer;
+}
+.text{
+    font-size: 1.8em;
+    font-weight: 500;
+}
 .fullContainer{
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 95%;
+    width: 80%;
+    height: 40em;
     margin: auto;
     margin-top: 2em;
-    border: solid grey;
     border-radius: 5px;
+    background-color: rgb(255, 255, 255);
 }
 
 .pcOrUser{
     display: flex;
     flex-direction: column;
-    border: solid red;
-    margin-bottom: 8em;
-
+    margin-bottom: 5em;
+    background-color: rgba(211, 211, 211, 0.226);
+    padding-bottom: 2em;
+    border-radius: 1em;
 }
 .text{
     margin-top: 1em;
 }
 .buttonPcOrUser button{
-    margin-top: 1em;
+    margin-top: 2em;
     width: 12em;
     padding: 8px;
-    border: solid grey;
-    background-color:white;
+    background-color:rgb(0, 0, 0);
+    color: white;
+    font-weight: 500;
     border-radius: 5px;
 }
 
@@ -49,6 +62,8 @@
 
 .game-board
 {
+    display: grid;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 	width: 300px;
 	height: 300px;
 	margin: 0 auto;
@@ -56,9 +71,8 @@
   color: #fff;
   border: 6px solid #2c3e50;
   border-radius: 10px;
-	
-	display: grid;
-	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  /*display: none;	
+*/
 }
 
 .box
