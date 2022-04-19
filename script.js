@@ -4,11 +4,7 @@ const gameBoard = (()=>{
     box.forEach((innerStuff)=>{innerStuff.innerText ="" })
     
     })()
-    
-    
-    
-    
-    
+
     let positionsOfXAndO = {
             0: "",
             1:"",
@@ -21,40 +17,33 @@ const gameBoard = (()=>{
             8:""
     }
 
-
-    
     let box;
     let squareDivs = document.getElementsByClassName("box")
     let pcOrUserDiv = document.getElementById("fullContainer")
-    let pressedPc = false
+    
     function changePcClassList(){
-        resetObjectjeje()
+    resetObjectjeje()
+      
       let alertIngPlayer = document.createElement("div")
       let alertText = document.createElement("p")
         alertText.innerText = "Your are playing against The Pc Bip Boop Bip"
         alertIngPlayer.appendChild(alertText)
-        alertIngPlayer.style.marginTop ="5em"
+        alertIngPlayer.style.marginTop ="2em"
         alertIngPlayer.style.fontSize ="2em"
         pcOrUserDiv.appendChild(alertIngPlayer)
 
-
-       
-        
-       
             for(let i = 0 ; i < 9 ; i++){
                 squareDivs[i].classList.add("boxPc")
                 squareDivs[i].classList.remove("boxUser")
     
             }
             box = document.querySelectorAll(".boxPc");
-                pressedPc = true;
                 box.forEach((boxy)=>{ boxy.addEventListener("click",eventclick)})
 
         
        
     
     }
-    let pressedUser = false
 
     function changeOtherUserClassList(){
         resetObjectjeje()
@@ -63,7 +52,7 @@ const gameBoard = (()=>{
         let alertText = document.createElement("p")
           alertText.innerText = "Your are playing against your friend"
           alertIngPlayer.appendChild(alertText)
-          alertIngPlayer.style.marginTop ="5em"
+          alertIngPlayer.style.marginTop ="2em"
           alertIngPlayer.style.fontSize ="2em"
           pcOrUserDiv.appendChild(alertIngPlayer)
         
@@ -73,39 +62,28 @@ const gameBoard = (()=>{
                 squareDivs[i].classList.remove("boxPc")
             }
                 box = document.querySelectorAll(".boxUser");
-                pressedUser = true;
-            
-        
-    
+                box.forEach((boxy)=>{ boxy.addEventListener("click",eventclick)})
     }
     
-
-
-
     function eventclick(){
-            let divPressed = this//.innerText;
          PushingXToObject(this)
     }
 
-    
+
     let counterTurn = 1;
     function PushingXToObject(divTouched){
             let IndexPressed = ""
-            console.log("puxhingxtoobject");
             const parent = document.getElementById('test');
-            let child= parent.children
+                let child= parent.children
             IndexPressed = [...child].indexOf(divTouched)
-            if(positionsOfXAndO[IndexPressed.toString()] === "X" || positionsOfXAndO[IndexPressed.toString()] ==="O")
-            {            
-            }
+            if(positionsOfXAndO[IndexPressed.toString()] === "X" 
+            || positionsOfXAndO[IndexPressed.toString()] ==="O")
+            { }           
             else{positionsOfXAndO[IndexPressed.toString()] ="X"
             
             if(box[0].className==="box boxPc"){
                 pushingOtoObjectPc()
                 displayXandOs()
-               
-
-    
             }else{  // this is the case if your playing against a friend
               if(counterTurn === 0){
                 counterTurn = 1
@@ -117,12 +95,8 @@ const gameBoard = (()=>{
                 counterTurn =0;
                 displayXandOs()
               }
-                
             }
-       
         }
-    
-     
     }
     
     
@@ -139,21 +113,18 @@ const gameBoard = (()=>{
         }
         RandomNum()
       }
-      
-           
-      
     }
     
     
     
     
     function displayXandOs(){
-        checkWin()
         const parent = document.getElementById('test');
         let child= parent.children
         for(let i = 0 ; i < 9; i++){
                 child[i].innerHTML=positionsOfXAndO[i.toString()]
     }
+    checkWin()
 
     }
     
@@ -198,37 +169,30 @@ const gameBoard = (()=>{
     
     function diagonals(value){
         if(value.includes("")===false && value.includes("O")=== false){
-                alert("win")
                 resetObjectjeje()
-   
+                return alert("win")
+
    
           
      }else if(value.includes("")===false && value.includes("X")===false){
-        alert("you lose")
-       resetObjectjeje()
+                resetObjectjeje()
+                return alert("you lose")
 
-    }
-    
+        }
     }
     
     
     function evaluateWin(value){
         for (let i = 0; i  <3; i++) {
             if(value[i].includes("")===false && value[i].includes("O")===false){
-            
-
-                alert("win")
                  resetObjectjeje()
+                 return alert("win")
 
             }else if(value[i].includes("")===false && value[i].includes("X")===false){
-      
-            alert("you lose")
              resetObjectjeje()
-
+             return alert("you lose")
+            }
         }
-        }
-    
-    
     }
     
     
@@ -236,8 +200,6 @@ const gameBoard = (()=>{
 
     }
     function resetObjectjeje(){
-     counterTurn = 1;
-
         positionsOfXAndO = {
             0:"",
             1:"",
@@ -248,8 +210,15 @@ const gameBoard = (()=>{
             6:"",
             7:"",
             8:""
-    }
-
+        }   
     displayXandOs()
-
     }
+
+
+
+function counterYouNum(){
+
+}
+//html Elements
+let counterYouDiv = document.getElementById("CounterYou");
+let counterOtherDiv = document.getElementById("CounterOther");
