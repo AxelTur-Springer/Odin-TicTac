@@ -25,6 +25,7 @@ const gameBoard = (()=>{
     function changePcClassList(){
      
     resetObjectjeje()
+    setplayer()
     resetCounters()
     CounterOtherChoice.innerText = "The Pc"
     tableTic.style.display="flex";
@@ -52,6 +53,7 @@ const gameBoard = (()=>{
 
     function changeOtherUserClassList(){
         resetObjectjeje()
+        setplayer()
         resetCounters()
         CounterOtherChoice.innerText = "Player O"
         tableTic.style.display="flex";
@@ -234,9 +236,7 @@ function displayWinOrLose(winOrLose){
 }
 
     function resetObjectjeje(){
-        document.querySelectorAll('.test').forEach(function(a){
-            a.remove()
-            })
+       
        counterTurn = 1;
         positionsOfXAndO = {
             0:"",
@@ -252,5 +252,9 @@ function displayWinOrLose(winOrLose){
     displayXandOs()
     }
 
-
+function setplayer(){
+    document.querySelectorAll('.test').forEach(function(a){
+        a.remove()
+        })
+}
 
