@@ -62,7 +62,7 @@ const gameBoard = (()=>{
         resetObjectjeje()
         setplayer()
         resetCounters()
-        CounterOtherChoice.innerText = "Player O"
+        CounterOtherChoice.innerText = "Oponent"
         tableTic.style.display="flex";
         let alertIngPlayer = document.createElement("div")
         let alertText = document.createElement("p")
@@ -186,16 +186,15 @@ const gameBoard = (()=>{
     
     function diagonals(value){
         if(value.includes("")===false && value.includes("O")=== false){
+            displayWinOrLose("win")
             resetObjectjeje()
             counter("win")
-            return alert("win")
-
    
           
      }else if(value.includes("")===false && value.includes("X")===false){
-                resetObjectjeje()
-                counter("lose")
-                return alert("you lose")
+        displayWinOrLose("lose")  
+        resetObjectjeje()
+        counter("lose")
 
         }
     }
@@ -204,14 +203,14 @@ const gameBoard = (()=>{
     function evaluateWin(value){
         for (let i = 0; i  <3; i++) {
             if(value[i].includes("")===false && value[i].includes("O")===false){
-                 resetObjectjeje()
-                 counter("win")
-                 return alert("win")
+                displayWinOrLose("win") 
+                counter("win")
+                resetObjectjeje()
 
             }else if(value[i].includes("")===false && value[i].includes("X")===false){
-             resetObjectjeje()
+                displayWinOrLose("lose")  
+            resetObjectjeje()
              counter("lose")
-             return alert("you lose")
             }
         }
     }
@@ -222,6 +221,7 @@ const counterOtherDiv = document.getElementById("CounterOther");
 let counterYouNum = 0;
 let counterOtherNum = 0;
 function counter(winOrLose){
+    
     if(winOrLose === "win"){
         counterYouNum +=1
         counterYouDiv.innerText = counterYouNum;
@@ -237,13 +237,19 @@ function resetCounters(){
    counterOtherDiv.innerText = counterYouNum;
 }
 
+let popUp = document.getElementsByClassName("popUpWinOrLose")
 
 function displayWinOrLose(winOrLose){
+    popUp[0].style.display="flex"
+    if(winOrLose === "win"){
+        popUp[0].children[0].children[0].innerText = "X";
+    }else{
+        popUp[0].children[0].children[0].innerText = "O"
+    }
 
 }
 
     function resetObjectjeje(){
-       
        counterTurn = 1;
         positionsOfXAndO = {
             0:"",
@@ -257,11 +263,17 @@ function displayWinOrLose(winOrLose){
             8:""
         }   
     displayXandOs()
+    setTimeout(DisapearPopUp,1500)
     }
+
+function DisapearPopUp(){
+    popUp[0].style.display="none"
+}
 
 function setplayer(){
     document.querySelectorAll('.test').forEach(function(a){
         a.remove()
         })
 }
+
 

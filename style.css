@@ -51,12 +51,11 @@ button:hover{
 
 
 .ticTacToeTable{
-    width:50em;
-    margin: auto;
+    width:100%;
     margin-top: 1em;
     display: none;
-    justify-content: center;
-    
+    justify-content: space-around;
+
 }
 
 
@@ -77,11 +76,11 @@ button:hover{
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 	width: 300px;
 	height: 300px;
-	margin: 0 auto;
   background-color: #ffffff;
   color: rgb(0, 0, 0);
-  border: 6px solid #000000;
+  border: 8px solid #000000;
   border-radius: 5px;
+  padding: 5px;
   animation: example 2s forwards;
   /*display: none;	
 */
@@ -104,3 +103,65 @@ button:hover{
 .boxPc{
     display: initial;
 }
+#nameOther{
+    width: 5em;
+}
+.nameYou{
+    width: 5em;
+}
+.popUpWinOrLose{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.596);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 20em;
+    height: 20em;
+    animation: movingConf 1s forwards linear;
+}
+@keyframes movingConf {
+    from {
+    font-size: 0em;
+      height: 0px;
+      width: 0px;
+    }
+  }
+.xOrO{
+    font-size: 10em;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .fullContainer{
+      width: 100%;
+  }
+  .pcOrUser{
+      width: 95%;
+      margin: 0px auto 3em;
+  }
+  .game-board{
+      width: 250px;
+      height: 250px;
+      padding: 0px;
+  }
+ #nameOther{
+     width: 4em;
+ }
+ .nameYou{
+     width: 4em;
+ }
+ .box{
+     font-size: 3em;
+     display: flex;
+ }
+  @keyframes example {
+    from {height: 50px;}
+    to {height: 250px;}
+  }
+  }
