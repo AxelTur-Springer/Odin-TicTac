@@ -89,6 +89,7 @@ const gameBoard = (()=>{
 
     let counterTurn = 1;
     function PushingXToObject(divTouched){
+
             let IndexPressed = ""
             const parent = document.getElementById('test');
                 let child= parent.children
@@ -134,20 +135,26 @@ const gameBoard = (()=>{
     
     
     
-    
+    let arrayValuesTie;
     function displayXandOs(){
+        arrayValuesTie =Object.values(positionsOfXAndO)
+        .filter((a)=>{return a ===""}).length;
+         if(arrayValuesTie === 0){
+            displayWinOrLose("tie")
+            resetObjectjeje()
+         }
         const parent = document.getElementById('test');
         let child= parent.children
         for(let i = 0 ; i < 9; i++){
                 child[i].innerHTML=positionsOfXAndO[i.toString()]
     }
     checkWin()
-
+  
     }
     
     
     
-    
+    let tie  = [];
     function checkWin(){
         //rows
         let arrayValues = Object.values(positionsOfXAndO);
@@ -197,6 +204,7 @@ const gameBoard = (()=>{
         counter("lose")
 
         }
+      
     }
     
     
@@ -213,6 +221,8 @@ const gameBoard = (()=>{
              counter("lose")
             }
         }
+       
+        if(positionsOfXAndO){}
     }
 
     //html Elements
@@ -240,10 +250,15 @@ function resetCounters(){
 let popUp = document.getElementsByClassName("popUpWinOrLose")
 
 function displayWinOrLose(winOrLose){
+    console.log()
     popUp[0].style.display="flex"
     if(winOrLose === "win"){
         popUp[0].children[0].children[0].innerText = "X";
-    }else{
+    }else if(winOrLose ==="tie"){
+        popUp[0].children[0].children[1].innerText=""
+        popUp[0].children[0].children[0].innerText = "Tie"
+    }
+    else{
         popUp[0].children[0].children[0].innerText = "O"
     }
 
