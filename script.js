@@ -252,6 +252,8 @@ let popUp = document.getElementsByClassName("popUpWinOrLose")
 function displayWinOrLose(winOrLose){
     console.log()
     popUp[0].style.display="flex"
+    popUp[0].children[0].children[1].innerText="Wins"
+
     if(winOrLose === "win"){
         popUp[0].children[0].children[0].innerText = "X";
     }else if(winOrLose ==="tie"){
