@@ -50,6 +50,13 @@ const gameBoard = (()=>{
        
     
     }
+    // Important format for viewint what has been pressed 
+    // (e). represents the elemnt cliked
+   /* box = document.querySelectorAll(".box");
+
+    box.forEach((boxy)=>{ boxy.addEventListener("click",(e)=>{
+        console.log(e)
+    })})*/
 
     function changeOtherUserClassList(){
         resetObjectjeje()
