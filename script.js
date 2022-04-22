@@ -103,7 +103,6 @@ function PushingXToObject(divTouched) {
 function pushingOtoObjectPc() {
   const arrayValues = Object.values(positionsOfXAndO);
   let dontPushIflastTurn = arrayValues.filter((a) => a === '').length
-  console.log(arrayValues,dontPushIflastTurn)
   if (arrayValues.includes('') && dontPushIflastTurn !==1 ) {
     function RandomNum() {
       const randomNum = Math.floor(Math.random() * 9);
