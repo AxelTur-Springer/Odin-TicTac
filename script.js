@@ -102,8 +102,9 @@ function PushingXToObject(divTouched) {
 
 function pushingOtoObjectPc() {
   const arrayValues = Object.values(positionsOfXAndO);
-
-  if (arrayValues.includes('')) {
+  let dontPushIflastTurn = arrayValues.filter((a) => a === '').length
+  console.log(arrayValues,dontPushIflastTurn)
+  if (arrayValues.includes('') && dontPushIflastTurn !==1 ) {
     function RandomNum() {
       const randomNum = Math.floor(Math.random() * 9);
       if (positionsOfXAndO[randomNum.toString()] === '') {
@@ -116,18 +117,19 @@ function pushingOtoObjectPc() {
 
 let arrayValuesTie;
 function displayXandOs() {
-  arrayValuesTie = Object.values(positionsOfXAndO)
-    .filter((a) => a === '').length;
-  if (arrayValuesTie === 0) {
-    displayWinOrLose('tie');
-    resetObjectjeje();
-  }
+ 
   const parent = document.getElementById('test');
   const child = parent.children;
   for (let i = 0; i < 9; i++) {
     child[i].innerHTML = positionsOfXAndO[i.toString()];
   }
   checkWin();
+  arrayValuesTie = Object.values(positionsOfXAndO)
+  .filter((a) => a === '').length;
+if (arrayValuesTie === 0) {
+  displayWinOrLose('tie');
+  resetObjectjeje();
+}
 }
 
 function checkWin() {
